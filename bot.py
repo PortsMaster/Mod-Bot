@@ -21,7 +21,7 @@ response_mappings = [
     {
         "name": "PokeMMO",
         "type": "text",
-        "keywords": ["pokemmo"],
+        "keywords": ["pokemmo","pokemon mmo"],
         "response": "PokeMMO can't be ported at this time."
     },
      {
