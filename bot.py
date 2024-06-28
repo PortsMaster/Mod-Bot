@@ -9,13 +9,26 @@ intents.message_content = True
 
 client = discord.Client(intents=intents)
 
+ignore_roles = True
+
+
 ignored_roles = ["The Crew", "Port Engineers","Administrator","Port Cadets","Developer"]
+
+if not ignore_roles:
+    ignored_roles = []
 
 common_keywords = ["port","ported","porting","want","coming","available","about","regarding","portmaster","game","uses","made","written","programmed"]
 
 listening_channels = ["bot-submersible","💡｜suggestion-talk"]
 
 generic_reponse = "This is an automated response. Please check the [new-suggestion](https://discord.com/channels/1122861252088172575/1232622554984878120) channel for more information on porting."
+
+slash_commands = {
+    "/portchart": {
+        "response": "Here is the portability chart https://raw.githubusercontent.com/PortsMaster/Port-Bot/main/Portmaster_chart.webp"
+    }
+
+}
 
 response_mappings = [
     {
@@ -33,12 +46,18 @@ response_mappings = [
     {
         "name": "San Andreas",
         "type": "text",
-        "keywords": ["san","andreas","san andreas"],
+        "keywords": ["andreas","san andreas"],
         "response": "Grand Theft Auto: San Andreas can't be ported at this time."
     }
 ]
 
 load_dotenv()
+
+def check_command(message):
+    message = message.lower()
+    for command in slash_commands:
+        if command in message:
+            return(slash_commands[command]["response"])
 
 def parseMessage(message):
     message = message.lower()
@@ -62,8 +81,13 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    
     if message.author == client.user:
         return
+    
+    response = check_command(message.content)
+    if response:
+        await message.reply(response)
     
     if hasattr(message.author,"roles"):
         for role in message.author.roles:
