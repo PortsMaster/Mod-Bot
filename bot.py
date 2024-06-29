@@ -3,6 +3,7 @@
 import discord
 from dotenv import load_dotenv
 import os
+import re
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -40,13 +41,13 @@ response_mappings = [
      {
         "name": "Unity",
         "type": "text",
-        "keywords": [" unity"],
+        "keywords": ["unity"],
         "response": "Games using Unity can't be ported at this time."
     },
     {
         "name": "San Andreas",
         "type": "text",
-        "keywords": [" andreas","san andreas"],
+        "keywords": ["andreas","san andreas"],
         "response": "Grand Theft Auto: San Andreas can't be ported at this time."
     }
 ]
@@ -69,7 +70,8 @@ def parseMessage(message):
     if is_common:
         for mapping in response_mappings:
             for keyword in mapping["keywords"]:
-                if keyword in message:
+                x = re.compile(r'\b%s\b' % keyword, re.I)
+                if x.search(message):
                     response = mapping["response"] + "\n\n" + generic_reponse
                     return(response)
                 
