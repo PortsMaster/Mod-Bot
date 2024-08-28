@@ -13,7 +13,7 @@ client = discord.Client(intents=intents)
 ignore_roles = True
 
 
-ignored_roles = ["The Crew", "Port Engineers","Administrator","Port Cadets","Developer"]
+ignored_roles = ["The Crew", "Port Engineers","Administrator","Port Cadets","Developer","Moderator"]
 
 if not ignore_roles:
     ignored_roles = []
