@@ -29,7 +29,7 @@ slash_commands = {
         "response": "Here is the portability chart https://raw.githubusercontent.com/PortsMaster/Port-Bot/main/Portmaster_chart.webp"
     },
     "!log": {
-        "response": "Every port has a log.txt generated in ports/{portfolder}, please drag and drop it to discord for help ."
+        "response": "Every port has a log.txt generated in ports/{portfolder}, please drag and drop it to discord for help."
     }
 
 }
