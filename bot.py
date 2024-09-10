@@ -27,6 +27,9 @@ generic_reponse = "This is an automated response. Please check the [new-suggesti
 slash_commands = {
     "/portchart": {
         "response": "Here is the portability chart https://raw.githubusercontent.com/PortsMaster/Port-Bot/main/Portmaster_chart.webp"
+    },
+    "!log": {
+        "response": "Every port has a log.txt generated in ports/{portfolder}, please drag and drop it to discord for help ."
     }
 
 }
