@@ -60,8 +60,7 @@ load_dotenv()
 def check_command(message):
     message = message.lower()
     for command in slash_commands:
-        x = re.compile(r'\b%s\b' % command, re.I)
-        if x.search(message):
+        if message == command:
             return(slash_commands[command]["response"])
 
 def parseMessage(message):
